@@ -6,4 +6,10 @@
     android:background="@color/teal_700"
     tools:context=".NoteFragment">
 
+    <TextView
+        android:id="@+id/view_note"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:textSize="30sp" />
 </LinearLayout>

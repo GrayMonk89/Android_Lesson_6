@@ -1,5 +1,6 @@
 package ru.gb.my_note_fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class NoteListFragment extends Fragment {
+    private Note currentNote;
 
     public static NoteListFragment newInstance() {
         NoteListFragment fragment = new NoteListFragment();
@@ -32,12 +34,28 @@ public class NoteListFragment extends Fragment {
             textView.setTextSize(30f);
             textView.setText(nameOfNote);
             ((LinearLayout) view).addView(textView);
+            final int finalI = i++;
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    currentNote = new Note(finalI);
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        showLand();
+                    } else {
+                        showPort();
 
+                    }
                 }
             });
         }
+    }
+    private void showPort() {
+        NoteFragment noteFragment = NoteFragment.newInstance(currentNote);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_of_note, noteFragment).addToBackStack("").commit();
+    }
+
+    private void showLand() {
+        NoteFragment noteFragment = NoteFragment.newInstance(currentNote);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.the_note, noteFragment).commit();
     }
 }
