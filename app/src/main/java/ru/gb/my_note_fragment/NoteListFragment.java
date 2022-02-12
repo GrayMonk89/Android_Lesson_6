@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,5 +25,19 @@ public class NoteListFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String[] listOfNote = getResources().getStringArray(R.array.note_list);
+        int i = 0;
+        for (String nameOfNote : listOfNote) {
+            TextView textView = new TextView(getContext());
+            textView.setTextSize(30f);
+            textView.setText(nameOfNote);
+            ((LinearLayout) view).addView(textView);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+        }
     }
 }
