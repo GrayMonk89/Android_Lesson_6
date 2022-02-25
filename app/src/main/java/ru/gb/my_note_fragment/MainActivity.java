@@ -1,9 +1,14 @@
 package ru.gb.my_note_fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,14 +20,42 @@ public class MainActivity extends AppCompatActivity {
             NoteListFragment noteListFragment = NoteListFragment.newInstance();
             getSupportFragmentManager().beginTransaction().replace(R.id.list_of_note, noteListFragment).commit();
         }
+        Toolbar toolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        Fragment backStackFragment = (Fragment)getSupportFragmentManager()
+        Fragment backStackFragment = (Fragment) getSupportFragmentManager()
                 .findFragmentById(R.id.list_of_note);
-        if(backStackFragment!=null&&backStackFragment instanceof NoteFragment){
+        if (backStackFragment != null && backStackFragment instanceof NoteFragment) {
             onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case (R.id.action_about): {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.the_note, AboutFragment.newInstance()).addToBackStack("").commit();
+                } else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.list_of_note, AboutFragment.newInstance()).addToBackStack("").commit();
+                }
+                return true;
+            }
+            case (R.id.action_exit): {
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

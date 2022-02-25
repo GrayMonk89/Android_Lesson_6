@@ -25,11 +25,13 @@ public class NoteListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_note_list, container, false);
     }
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(CURRENT_NOTE,currentNote);
+        outState.putParcelable(CURRENT_NOTE, currentNote);
     }
+
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState != null) {
@@ -60,7 +62,6 @@ public class NoteListFragment extends Fragment {
                         showLand();
                     } else {
                         showPort();
-
                     }
                 }
             });
