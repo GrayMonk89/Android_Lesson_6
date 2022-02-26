@@ -9,4 +9,6 @@
     <string name="tittle">Tittle</string>
     <string name="body">Body</string>
     <string name="add_new_note">Add New Note</string>
+    <string name="edit">Edit</string>
+    <string name="delete_note">Delete note</string>
 </resources>
