@@ -25,12 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         Fragment backStackFragment = (Fragment) getSupportFragmentManager()
@@ -38,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         if (backStackFragment != null && backStackFragment instanceof NoteFragment) {
             onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -49,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.list_of_note, AboutFragment.newInstance()).addToBackStack("").commit();
                 }
+                return true;
+            }
+            case (R.id.action_new_note):{
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.the_note, NewNoteFragment.newInstance()).addToBackStack("").commit();
+                } else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.list_of_note, NewNoteFragment.newInstance()).addToBackStack("").commit();
+                };
                 return true;
             }
             case (R.id.action_exit): {

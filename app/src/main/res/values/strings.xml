@@ -5,4 +5,8 @@
     <string name="about">About</string>
     <string name="exit">Exit</string>
     <string name="the_best_app_ever">The best app ever!=)</string>
+    <string name="new_note">New Note</string>
+    <string name="tittle">Tittle</string>
+    <string name="body">Body</string>
+    <string name="add_new_note">Add New Note</string>
 </resources>

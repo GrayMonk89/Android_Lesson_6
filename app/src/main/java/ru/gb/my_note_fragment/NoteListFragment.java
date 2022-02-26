@@ -3,6 +3,8 @@ package ru.gb.my_note_fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -31,6 +33,7 @@ public class NoteListFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putParcelable(CURRENT_NOTE, currentNote);
     }
+
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
