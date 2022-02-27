@@ -11,8 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnDialogListener {
 
+
+    @Override
+    public void onDialogResult(String string) {
+
+    }
 
     public void onDialogResult(String messageTittle, String messageBody){
         Toast.makeText(this, "Заголовок" + messageTittle + " \n" + "Тело заметки" + messageBody, Toast.LENGTH_LONG).show();
