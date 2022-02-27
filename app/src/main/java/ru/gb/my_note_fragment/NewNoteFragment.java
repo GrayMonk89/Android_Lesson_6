@@ -1,9 +1,15 @@
 package ru.gb.my_note_fragment;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -42,9 +48,9 @@ public class NewNoteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_new_note, container, false);
-        button = view.findViewById(R.id.add_new_note);
-        return view;
+
+
+        return inflater.inflate(R.layout.fragment_new_note, container, false);
     }
 
     @Override
@@ -55,19 +61,32 @@ public class NewNoteFragment extends Fragment {
 
     }
     void initView(View view){
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(view.getId() == R.id.add_new_note){
-                    Toast.makeText(requireContext(), "Типо добавил заметку", Toast.LENGTH_SHORT).show();
-                    requireActivity().onBackPressed();
-                }
-            }
-        });
-
+        view.findViewById(R.id.add_new_note).setOnClickListener(v -> {addNote();});
         view.findViewById(R.id.go_back).setOnClickListener(v ->{showDialogFragment();});
-
     }
+
+    private void addNote() {
+
+        NotificationManager notificationManager =(NotificationManager) requireActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel("1", "VERY_VERY_IMPORTANT_CHANNEL", NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.setDescription("Канал для важных сообщений!");
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+
+        Notification notification = new NotificationCompat.Builder(requireContext(),"1")
+                .setContentTitle("Внимание! Очень важное сообщение!")
+                .setContentText("Была добаленна новая заметка")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .build();
+
+        notificationManager.notify(1, notification);
+
+
+            Toast.makeText(requireContext(), "Типо добавил заметку", Toast.LENGTH_SHORT).show();
+            requireActivity().onBackPressed();
+    }
+
     void showDialogFragment() {
         new ChoiceDialogFragment().show(getActivity().getSupportFragmentManager(), "Dialog");
     }

@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class NoteListFragment extends Fragment {
     public static final String CURRENT_NOTE = "current_note";
     private Note currentNote;
@@ -63,6 +65,7 @@ public class NoteListFragment extends Fragment {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Snackbar.make(view, nameOfNote, Snackbar.LENGTH_LONG).show();
                     currentNote = new Note(finalI);
                     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                         showLand();
