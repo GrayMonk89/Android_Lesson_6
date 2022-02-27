@@ -8,6 +8,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_quick_new_note"
+        android:icon="@drawable/ic_baseline_plus_one_24"
+        android:title="@string/quick_new_note"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_my"
         android:title="@string/about"

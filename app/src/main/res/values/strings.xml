@@ -12,4 +12,5 @@
     <string name="edit">Edit</string>
     <string name="delete_note">Delete note</string>
     <string name="go_back">Go back</string>
+    <string name="quick_new_note">Quick new note</string>
 </resources>

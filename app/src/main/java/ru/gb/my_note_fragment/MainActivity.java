@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    public void onDialogResult(String messageTittle, String messageBody){
+        Toast.makeText(this, "Заголовок" + messageTittle + " \n" + "Тело заметки" + messageBody, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
             }
             case (R.id.action_exit): {
                 finish();
+                return true;
+            }
+            case (R.id.action_quick_new_note): {
+                new AddQuickNote().show(getSupportFragmentManager(), "Quick Note");
                 return true;
             }
         }
