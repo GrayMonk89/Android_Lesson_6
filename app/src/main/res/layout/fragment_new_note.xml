@@ -53,5 +53,12 @@
         android:text="@string/add_new_note"
         android:textColor="@color/purple_200"
         android:layout_gravity="center"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/go_back"
+        android:textColor="@color/purple_200"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

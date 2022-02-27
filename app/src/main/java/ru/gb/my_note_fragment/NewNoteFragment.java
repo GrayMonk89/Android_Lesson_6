@@ -51,6 +51,10 @@ public class NewNoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
+        initView(view);
+
+    }
+    void initView(View view){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,5 +64,11 @@ public class NewNoteFragment extends Fragment {
                 }
             }
         });
+
+        view.findViewById(R.id.go_back).setOnClickListener(v ->{showDialogFragment();});
+
+    }
+    void showDialogFragment() {
+        new ChoiceDialogFragment().show(getActivity().getSupportFragmentManager(), "Dialog");
     }
 }
